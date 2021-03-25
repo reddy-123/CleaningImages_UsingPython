@@ -81,20 +81,7 @@ def save_model(model, path):
     with open(path, 'w') as f:
         cPickle.dump(model, f)
 
-def main():
-    parser = argparse.ArgumentParser(description=None)
-    parser.add_argument('-v', '--verbose', action='count', dest='verbosity', help='Set verbosity.')
-    parser.add_argument('-l', '--limit', help='Number of training images to load.', type=int)
-    parser.add_argument('-n', '--neighbors', help='Number of neighbors to use for network.', type=int, default=2)
-    parser.add_argument('-e', '--epochs', default=20, type=int, help='Number of epochs to run for.')
-    parser.add_argument('-b', '--batch-size', default=10, type=int, help='The size of each minibatch.')
-    parser.add_argument('path', help='Where to save the model.')
-    args = parser.parse_args()
 
-    if args.verbosity == 1:
-        logger.setLevel(logging.INFO)
-    elif args.verbosity >= 2:
-        logger.setLevel(logging.DEBUG)
 
     model = train(limit=args.limit, neighbors=args.neighbors,
                   epochs=args.epochs, batch_size=args.batch_size)
