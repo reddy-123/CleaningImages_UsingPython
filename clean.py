@@ -87,18 +87,7 @@ def load_model(path):
     with open(path) as f:
         return cPickle.load(f)
 
-def main():
-    parser = argparse.ArgumentParser(description=None)
-    parser.add_argument('model', help='Model to use.')
-    parser.add_argument('input', help='Image to clean.')
-    parser.add_argument('-v', '--verbose', action='count', dest='verbosity', help='Set verbosity.')
-    parser.add_argument('-o', '--output', help='Where to write the cleaned image.')
-    args = parser.parse_args()
 
-    if args.verbosity == 1:
-        logger.setLevel(logging.INFO)
-    elif args.verbosity >= 2:
-        logger.setLevel(logging.DEBUG)
 
     model, params = load_model(args.model)
 
