@@ -52,18 +52,7 @@ def dump(image_spec, imgs, output_dir):
                 f.write('{}_{}_{},{}\n'.format(num, i+1, j+1, pixel))
                 it.iternext()
 
-def main():
-    parser = argparse.ArgumentParser(description=None)
-    parser.add_argument('-l', '--limit', help='Number of training images to load.', type=int)
-    parser.add_argument('-v', '--verbose', action='count', dest='verbosity', help='Set verbosity.')
-    parser.add_argument('model', help='Model to use.')
-    parser.add_argument('output_dir', help='Where to dump solution.')
-    args = parser.parse_args()
 
-    if args.verbosity == 1:
-        logger.setLevel(logging.INFO)
-    elif args.verbosity >= 2:
-        logger.setLevel(logging.DEBUG)
 
     model, params = clean.load_model(args.model)
     specs, imgs = build_submission(model, args.limit, params['neighbors'])
